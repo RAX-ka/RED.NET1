@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>READ.net</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --principal-color:rgb(64, 99, 255);
+            --second-color:white;
+            --third-color: rgb(255, 255, 255);
+            --four-color:black;
+             --five-color:rgb(40, 240, 240);
+            --bleur: rgba(128, 128, 128, 0.425);
+            --teal-accent: #00CED1; 
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --text-color: black;
+            --fonce :rgb(0, 4, 255);
+            --price:rgb(6, 0, 83);
+            --gold:gold;
+        }
+        
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            background-color: var(--second-color);
+            color: var(--four-color);
+            padding: 20px;
+            font-family: rial;
+        }
+        
+        header {
+            position: relative;
+            padding: 0 2rem;
+            margin-bottom: 0; 
+        }
+        
+        .navbar {
+            width: 100%;
+            height: 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--second-color);
+            padding: 0 20px;
+            border-radius: 15px;
+            position: relative;
+            z-index: 15px;
+        }
+        
+        .logo a {
+            font-size: 3rem;
+            font-weight: bolder;
+            color: var(--principal-color);
+            padding: 0;
+        }
+        
+        .links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .links li {
+            list-style: none;
+        }
+        
+        .links a {
+            color: var(--four-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            font-weight: bold;
+        }
+        
+        .links a:hover {
+            color: var(--teal-accent);
+        }
+        a{
+           text-decoration: none;
+        }
+        .menu a:hover{
+            color: var(--four-color);
+        }
+        .login a :hover{
+            color: var(--second-color);
+        }
+        .links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--third-color);
+            transition: width 0.3s ease;
+        }
+        
+        .links a:hover::after {
+            width: 100%;
+        }
+        
+        .menubtn {
+            color: var(--four-color);
+            font-size: 2rem;
+            cursor: pointer;
+            display: none;
+            transition: transform 0.3s ease;
+            display:flex ;
+        }
+        
+        .menubtn:hover {
+            transform: scale(1.1);
+            
+        }
+        
+        .login {
+            background-color: var(--principal-color);
+            color: var(--second-color);
+            padding: 12px 30px;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .login:hover {
+            transform: scale(1.05);
+            background-color: var(--five-color);
+            color: var(--four-color);
+        }
+        
+        .menu {
+            position: absolute;
+            right: 2rem;
+            top: 90px;
+            width: 400px;
+            max-height: 0;
+            background-color: var(--bleur);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
+            box-shadow: 0 20px 30px var(--bleur);
+            
+            
+        }
+        .menu a{
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .menu.open {
+            max-height: 600px;
+        }
+        
+        .menu ul {
+            padding: 20px 0;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        
+        .menu li {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: background 0.3s ease;
+        
+        }
+        
+        .menu li:hover {
+            background-color: var(--third-color);
+            color: var(--four-color);
+        }
+        
+        .menu li a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            color: var(--four-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .menu li i {
+            width: 24px;
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--principal-color);
+        }
+        
+        
+        .login2-container {
+            padding: 15px 20px 5px;
+            margin-top: 10px;
+            border-top: 1px solid var(--bleur);
+        }
+        
+        .login2 {
+            background-color: var(--principal-color);
+            color: var(--second-color);
+            padding: 15px;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            display: block;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .login2:hover {
+            background-color: var(--principal-color);
+            color: var(--four-color);
+            transform: scale(1.02);
+        }
+        
+        
+        .container {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: -30px auto 0; 
+            padding: 0;
+        }
+        
+        .text-container {
+            flex: 1;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .text-container .first {
+            font-size: 4rem;
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+        
+        .text-container .rea {
+            color: var(--principal-color);
+            font-size: 4rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .image {
+            flex: 1;
+            text-align: right;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 500px;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 992px) {
+            .links,
+            .login {
+                display: none;
+            }
+            
+            .menubtn {
+                display: block;
+            }
+            
+            .menu {
+                right: 2rem;
+                width: calc(100% - 4rem);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                margin-top: 20px;
+            }
+            
+            .text-container {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            
+            .image {
+                text-align: center;
+                flex: 5;
+                height: 900px;
+
+            }
+            
+            .text-container .first,
+            .text-container .rea {
+                font-size: 3rem;
+            }
+            
+            .menu {
+                width: 90%;
+                right: 5%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .menu {
+                width: 95%;
+                right: 2.5%;
+            }
+            
+            .navbar {
+                padding: 0 15px;
+            }
+            
+            .logo a {
+                font-size: 1.7rem;
+            }
+            
+            .text-container .first,
+            .text-container .rea {
+                font-size: 2.5rem;
+            }
+            .rating-str {
+                padding: 30px 20px;
+            }
+            
+            .rating {
+                font-size: 4rem;
+            }
+        }
+
+        .search-container {
+            position: fixed;
+            display: flex;
+            bottom: 20px; 
+            left: 50%;
+            z-index: 10;
+            transform: translateX(-50%);
+            width: auto;
+            padding: 10px;
+            background:var(--four-color);
+            border-radius: 25px;
+            box-shadow: 0 4px 6px var(--second-color);
+        }
+
+
+        .search-input {
+            border: none;
+            outline: none;
+            padding: 10px;
+            font-size: 1rem;
+            width: 250px;
+            border-radius: 25px;
+        }
+
+        .search-btn {
+            background: var(--second-color);
+            border: none;
+            outline: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .txt p{
+            color:var(--four-color);
+        
+            font-size:3rem ;
+            font-weight: bold;
+        }
+        .sldr {
+            max-width: 1200px;
+            margin: 50px auto 0;
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        .sldrtxt h1 {
+            color: var(--third-color);
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            max-height: 400px;
+            border-radius: 15px;
+            padding: 15px 0;
+            background: var(--bleur);
+        }
+
+        .slide-elements {
+            display: flex;
+            width: calc(200px * 20);
+            animation: slide 40s linear infinite;
+        }
+
+        .slide-elements img {
+            width: 200px;
+            height: 300px;
+            margin: 0 10px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px var(--second-color);
+            transition: transform 0.3s ease;
+        }
+
+        .slide-elements img:hover {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        @keyframes slide {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); } 
+        }
+        
+
+        .shop {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+      background-color: var(--bleur);
+      border-radius: 15px;
+    }
+
+    .shop-title {
+      font-size: 3rem;
+      color: var(--third-color);
+      margin-bottom: 30px;
+      
+    }
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .shop-item {
+      background-color: var(--second-color);
+      padding: 20px;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .shop-item:hover {
+      transform: scale(1.03);
+    }
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .shop-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .shop-item h2 {
+      margin: 15px 0 10px;
+      font-size: 1.5rem;
+      color: var(--four-color);
+    }
+   
+    .price {
+      color: var(--price);
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+
+    .buy-btn {
+      background-color: var(--principal-color);
+      color: var(--second-color);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .btn-download {
+         color: var(--four-color);
+         
+         }
+                        
+     .btn-download:hover {
+     color: var(--five-color);
+     }
+                        
+    
+    .buy-btn:hover {
+      background-color: var(--teal-accent);
+      color: var(--second-color);
+    }
+
+    .like-btn {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: var(--third-color);
+      color: var(--second-color);
+    }
+
+     .cont {
+        background-color: var(--principal-color);
+            color: var(--second-color);
+            padding: 15px;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            display: block;
+            justify-content: center;
+            align-items: center;
+     }
+      .cont:hover{
+        color: var(--second-color);
+        background-color: var(--four-color);
+        transform: scale(1.02);
+      }
+         
+
+      .opinion {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 40px 20px;
+            text-align: center;
+            background: var(--bleur);
+            border-radius: 15px;
+        }
+
+        .opinion h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--principal-color);
+        }
+          
+        .opinion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .opinion-card {
+            
+            padding: 25px;
+            border-radius: 15px;
+            text-align: left;
+            position: relative;
+        }
+          
+        .opinion-card:before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 5rem;
+            color: var(--principal-color);
+            opacity: 0.2;
+            font-family: serif;
+            line-height: 1;
+        }
+        .opinion-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .opinion-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .opinion-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--principal-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--second-color);
+        }
+
+        .author-info h4 {
+            font-size: 1.2rem;
+            color: var(--principal-color);
+        }
+        
+        .author-info p {
+            color: var(--four-color);
+        }
+
+        .rating-str {
+            max-width: 800px;
+            margin: 60px auto;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--teal-accent);
+        }
+        
+        .rating {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--principal-color);
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .stars {
+            font-size: 2rem;
+            color: var(--principal-color);
+            margin-bottom: 20px;
+        }
+        
+        .total-reviews {
+            font-size: 1.2rem;
+            color:var(--text-color);
+            margin-bottom: 30px;
+        }
+        
+        .bars {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .rat-label {
+            width: 100px;
+            text-align: right;
+            padding-right: 15px;
+            color: var(--third-color);
+        }
+        .bar-container {
+            flex: 1;
+            height: 12px;
+            background: var(--second-color);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .bar {
+            height: 100%;
+            background: var(--principal-color);
+            border-radius: 6px;
+        }
+        
+        .bar-5 { width: 85%; }
+        .bar-4 { width: 12%; }
+        .bar-3 { width: 2%; }
+        .bar-2 { width: 1%; }
+        .bar-1 { width: 0%; }
+        
+        .review{
+            max-width: 800px;
+            margin: 60px auto;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid var(--teal-accent);
+        }
+        
+        .review h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--teal-accent);
+        }
+        
+        .form {
+            margin-bottom: 25px;
+        }
+        
+        .form label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color:var(--text-color);
+            font-weight: bold;
+        }
+
+        .tap {
+            width: 100%;
+            padding: 15px;
+            background: var(--second-color);
+            border: 2px solid var(--teal-accent);
+            border-radius: 10px;
+            color: var(--third-color);
+            font-size: 1rem;
+        }
+        
+        .rating-select {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .rating-star {
+            font-size: 2rem;
+            color: var(--bleur);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .rating-star.active {
+            color: var(--principal-color);
+        }
+        
+        .submit-btn {
+            background: var(--teal-accent);
+            color: var(--second-color);
+            padding: 15px 50px;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+        }
+        .submit-btn:hover {
+            background: var(--principal-color);
+            transform: scale(1.05);
+        }
+
+
+        .toptext {
+      text-align: center;
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .toptext h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: var(--principal-color);
+      font-weight: bold;
+    }
+
+    .toptext p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: var(--text-color);
+    }
+    
+    .toptext::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--teal-accent);
+    }
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .section {
+      margin: 60px 0;
+    }
+    
+    .title {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 40px;
+      color: var(--teal-accent);
+      position: relative;
+    }
+    .title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--principal-color);
+    }
+    
+    .story-content {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    .story-text {
+      flex: 1;
+    }
+    .story-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--principal-color);
+    }
+    
+    .story-text p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-color);
+      font-weight: bold;
+    }
+    
+    .story-image {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px var(--second-color);
+    }
+    .story-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+      max-width: 100%; 
+    }
+    
+    .story-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }   
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid var(--teal-accent);
+      transition: transform 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-10px);
+    }
+     
+    .stat-card i {
+      font-size: 2.5rem;
+      color: var(--principal-color);
+      margin-bottom: 20px;
+    }
+    .stat-card .number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--teal-accent);
+      margin-bottom: 10px;
+
+    }
+
+    .stat-card .label {
+      font-size: 1.1rem;
+      color: var(--text-color);
+    }
+    
+    .values {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .value-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid var(--principal-color);
+      transition: transform 0.3s ease;
+    }
+
+    .value-card:hover {
+      transform: scale(1.03);
+    }
+    .value-card i {
+      font-size: 2.5rem;
+      color: var(--principal-color);
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    
+    .value-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--teal-accent);
+    }
+    
+    .value-card p {
+      color: var(--text-color);
+      line-height: 1.7;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .last {
+      text-align: center;
+      padding: 60px 40px;
+      margin: 60px 0;
+      background: var(--card-bg);
+      border-radius: 15px;
+      border: 1px solid var(--principal-color);
+    }
+    
+    .last h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--principal-color);
+      font-weight: bold;
+    }
+
+    .last p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: var(--text-color);
+    }
+    
+    .last-btn {
+      background: var(--principal-color);
+      color: var(--second-color);
+      padding: 15px 50px;
+      border: none;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 20px;
+    }  
+    @media (max-width: 576px) {
+      .toptext h1 {
+        font-size: 2.2rem;
+        font-weight: bold;
+      }
+      
+      .stat-card .number {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      
+      .last-btn {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+      }
+    }
+     
+    @media (max-width: 768px) {
+      .story-content {
+        flex-direction: column;
+      }
+      
+      .title {
+        font-size: 2.2rem;
+      }
+      
+      .last h2 {
+        font-size: 2rem;
+      }
+      
+      .menu {
+        width: 90%;
+        right: 5%;
+      }
+    }
+     
+    @media (max-width: 992px) {
+    
+      
+      .toptext h1 {
+        font-size: 2.8rem;
+        font-weight: bold;
+      }
+      
+      .toptext p {
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+    }
+
+    
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: var(--principal-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="#">READ.net</a></div>
+            <ul class="links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="contactus2.html">CONTACT</a></li>
+                <li><a href="store.html">STORE</a></li>
+                <li><a href="service.html">SERVICES</a></li>
+            </ul>
+            <a href="loogin.html" class="login">LOGIN</a>
+            <div class="menubtn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="index.html"><i class="fa fa-home"></i> HOME</a></li>
+                <li><a href="myshop.html"><i class="fa fa-shopping-cart"></i> MY SHOP</a></li>
+                <li><a href="store.html"><i class="fa fa-store"></i> STORE</a></li>
+                <li><a href="service.html"><i class="fa fa-handshake"></i> SERVICE</a></li>
+                <li><a href="best.html"><i class="fa fa-star"></i> BEST SELLERS</a></li>
+                <li><a href="contactus2.html"><i class="fa fa-envelope"></i> CONTACT</a></li>
+                <li><a href="#"><i class="fa fa-heart"></i> LIKED</a></li>
+                <li><a href="side.html"><i class="fa fa-info-circle"></i> ABOUT US</a></li>
+                <li class="login2-container">
+                    <a href="loogin.html" class="login2">LOGIN</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="text-container">
+            <p class="first">DIVE INTO THE WORLD OF BOOKS ON</p>
+            <p class="rea">READ.NET</p>
+        </div>
+        <div class="image">
+            <img src="ChatGPT Image 15 mai 2025, 16_01_35.png" alt="">
+        </div>
+    </div>
+
+    <div class="loking">
+        <div class="search-container">
+            <input type="text" placeholder="Search books..." class="search-input">
+            <button class="search-btn"><i class="fas fa-search" style="color: var(--four-color);"></i></button>
+        </div>
+    </div>
+
+
+
+     <div class="txt">
+        <p>  WITH SEVERAL BOOKS FROM DIFRENT TYPPE</p>
+     </div>
+    <div class="sldr">
+        
+        <div class="slider-container">
+            <div class="slide-elements">
+                <img src="dragon.jpeg" alt="Image 1">
+            <img src="einstien.jpeg" alt="Image 2">
+            <img src="marvel.jpeg" alt="Image 3">
+            <img src="fantasy.jpeg" alt="Image 4">
+            <img src="pysic.jpeg" alt="Image 5">
+            <img src="images 8.jpg" alt="Image 6">
+            <img src="art.jpeg" alt="Image 7">
+            <img src="ring.jpeg" alt="Image 8">
+            <img src="carton.jpeg" alt="Image 9">
+            <img src="anime.jpeg" alt="Image 10">
+    
+            
+            <img src="dragon.jpeg" alt="Image 1">
+            <img src="einstien.jpeg" alt="Image 2">
+            <img src="marvel.jpeg" alt="Image 3">
+            <img src="fantasy.jpeg" alt="Image 4">
+            <img src="art.jpeg" alt="Image 5">
+            <img src="images 8.jpg" alt="Image 6">
+            <img src="science.jpeg" alt="Image 7">
+            <img src="ring.jpeg" alt="Image 8">
+            <img src="carton.jpeg" alt="Image 9">
+            <img src="anime.jpeg" alt="Image 10">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="text-container">
+            <p class="first"> FIND ALL THE BOOKS THAT YOU WANT BY ONE CLICK</p>
+            
+        </div>
+        <div class="image">
+            <img src="standboy2.png" alt="">
+        </div>
+    </div>
+    
+      <div class="txt">
+          <p>   SEE WHAT THE OTHERS LIKE TO READ ON:🔥 The Best Sale Books — Don’t Miss Out! 🔥 </p>
+      </div>
+
+    
+  <div class="shop">
+    <h1 class="shop-title">BEST sales of the week</h1>
+
+    <div class="shop-grid">
+      <div class="shop-item">
+        <img src="bok1.jpg" alt="Book 1" />
+        <h2>A intersting novel</h2>
+        <p class="price">$12.99</p>
+        <div class="button-row">
+          <button class="buy-btn">Buy Now</button>
+          <button class="like-btn">❤️ Like</button>
+          <div class="btn btn-download"><i class="fas fa-download"></i></div>
+        </div>
+      </div>
+
+      <div class="shop-item">
+        <img src="bok2.jpg" alt="Book 2" />
+        <h2>Development</h2>
+        <p class="price">$14.99</p>
+        <div class="button-row">
+          <button class="buy-btn">Buy Now</button>
+          <button class="like-btn">❤️ Like</button>
+          <div class="btn btn-download"><i class="fas fa-download"></i></div>
+        </div>
+      </div>
+
+      <div class="shop-item">
+        <img src="bok3.jpg" alt="Book 6" />
+        <h2>Advice</h2>
+        <p class="price">$20.22</p>
+        <div class="button-row">
+          <button class="buy-btn">Buy Now</button>
+          <button class="like-btn">❤️ Like</button>
+          <div class="btn btn-download"><i class="fas fa-download"></i></div>
+        </div>     
+    </div>
+  
+
+    
+    <div class="shop-item">
+        <img src="bokk5.jpg" alt="Book 6" />
+        <h2>A fiction novel</h2>
+        <p class="price">$18</p>
+        <div class="button-row">
+          <button class="buy-btn">Buy Now</button>
+          <button class="like-btn">❤️ Like</button>
+          <div class="btn btn-download"><i class="fas fa-download"></i></div>
+        </div>     
+    </div>
+
+ 
+    <div class="shop-item">
+        <img src="knif.jpg" alt="Book 6" />
+        <h2>crime storie</h2>
+        <p class="price">$20</p>
+        <div class="button-row">
+          <button class="buy-btn">Buy Now</button>
+          <button class="like-btn">❤️ Like</button>
+          <div class="btn btn-download"><i class="fas fa-download"></i></div>
+        </div>     
+    </div>
+
+    </div>
+  </div>
+
+
+    
+<div class="txt">
+     <p>  FIND YOUR NEXT BOOK TO READ </p>
+</div>
+
+  
+
+<div class="shop">
+  <h1 class="shop-title">Book Store</h1>
+
+  <div class="shop-grid">
+    <div class="shop-item">
+      <img src="dragon.jpeg" alt="Book 1" />
+      <h2>Fantasy Dragon</h2>
+      <p class="price">$12.99</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>
+    </div>
+
+    <div class="shop-item">
+      <img src="art.jpeg" alt="Book 2" />
+      <h2>Art Book</h2>
+      <p class="price">$14.99</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>
+    </div>
+
+    <div class="shop-item">
+      <img src="Both .jpg" alt="Book 3" />
+      <h2>Science Book</h2>
+      <p class="price">$9.99</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>
+    </div>
+
+    <div class="shop-item">
+      <img src="anime.jpeg" alt="Book 4" />
+      <h2>Anime Book</h2>
+      <p class="price">$11.99</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>
+    </div>
+
+    <div class="shop-item">
+      <img src="ring.jpeg" alt="Book 5" />
+      <h2>Ring Tales</h2>
+      <p class="price">$20</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>
+    </div>
+
+    <div class="shop-item">
+      <img src="Kobo .jpg" alt="Book 6" />
+      <h2>storie</h2>
+      <p class="price">$20.22</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>     
+  </div>
+
+  
+  <div class="shop-item">
+      <img src="muscle.jpg" alt="Book 6" />
+      <h2>GYME advice</h2>
+      <p class="price">$10.55</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>     
+  </div>
+
+  
+  <div class="shop-item">
+      <img src="Room .jpg" alt="Book 6" />
+      <h2>girls stories</h2>
+      <p class="price">$8</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>     
+  </div>
+
+  
+  <div class="shop-item">
+      <img src="food.jpg" alt="Book 6" />
+      <h2>Food recipes</h2>
+      <p class="price">$10</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>     
+  </div>
+   
+  
+  <div class="shop-item">
+      <img src="einstien.jpeg" alt="Book 6" />
+      <h2>Einstein's Mind</h2>
+      <p class="price">$13</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>     
+  </div>
+     
+  
+  <div class="shop-item">
+      <img src="marvel.jpeg" alt="Book 6" />
+      <h2>illustrated stories</h2>
+      <p class="price">$16.99</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>     
+  </div>
+   
+  
+  <div class="shop-item">
+      <img src="knif.jpg" alt="Book 6" />
+      <h2>crime storie</h2>
+      <p class="price">$20</p>
+      <div class="button-row">
+        <button class="buy-btn">Buy Now</button>
+        <button class="like-btn">❤️ Like</button>
+        <div class="btn btn-download"><i class="fas fa-download"></i></div>
+      </div>     
+  </div>
+
+  </div>
+</div>
+<div class="container">
+    <div class="text-container">
+        <p class="first" style="font-size: 55px;">IF YOU HAVE ANY QUESTIONS, REQUESTS,CUSTOM BOOKS OR SOMME COMMENT DO NOT HESITATE TO CONTACT US </p>
+        <a href="contactus2.html" class="cont">CONTACT US</a>
+    </div>
+    <div class="image">
+        <img src="contact_us-removebg-preview (1).png" alt="">
+    </div>
+</div>
+
+
+
+
+
+<section class="opinion">
+<h2>What Our Readers Say</h2>
+<div class="opinion-grid">
+<div class="opinion-card">
+    <p class="opinion-text">The personalized recommendations are spot on! I've discovered so many amazing books I would have never found on my own.</p>
+    <div class="opinion-author">
+        <div class="opinion-avatar">SJ</div>
+        <div class="author-info">
+            <h4>Sarah.ol</h4>
+            <p>Member for 2 years</p>
+        </div>
+    </div>
+</div>
+
+<div class="opinion-card">
+    <p class="opinion-text">The audiobook service has changed my commute. The selection is incredible and the app is so easy to use.</p>
+    <div class="opinion-author">
+        <div class="opinion-avatar">MR</div>
+        <div class="author-info">
+            <h4>RIDA .rida</h4>
+            <p>Premium Subscriber</p>
+        </div>
+    </div>
+</div>
+
+<div class="opinion-card">
+    <p class="opinion-text">I've met my best friends through the mystery book club. The community here is amazing and so welcoming.</p>
+    <div class="opinion-author">
+        <div class="opinion-avatar">EC</div>
+        <div class="author-info">
+            <h4>Eman.te</h4>
+            <p>Book Club Leader</p>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+
+<div class="rating-str">
+    <div class="rating">4.8</div>
+    <div class="stars">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star-half-alt"></i>
+    </div>
+    <div class="total-reviews">Based on 1,243 reviews</div>
+    
+    <div class="bars">
+        <div class="bar">
+            <div class="rat-label">5 stars</div>
+            <div class="bar-container">
+                <div class="bar bar-5"></div>
+            </div>
+        </div>
+        <div class="bar">
+            <div class="rat-label">4 stars</div>
+            <div class="bar-container">
+                <div class="bar bar-4"></div>
+            </div>
+        </div>
+        <div class="bar">
+            <div class="rat-label">3 stars</div>
+            <div class="bar-container">
+                <div class="bar bar-3"></div>
+            </div>
+        </div>
+        <div class="bar">
+            <div class="rat-label">2 stars</div>
+            <div class="bar-container">
+                <div class="bar bar-2"></div>
+            </div>
+        </div>
+        <div class="bar">
+            <div class="rat-label">1 star</div>
+            <div class="bar-container">
+                <div class="bar bar-1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="review">
+    <h2>Share Your Experience</h2>
+    <form>
+        <div class="form">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" class="tap" placeholder="Your name">
+        </div>
+        
+        <div class="form">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" class="tap" placeholder="Your email">
+        </div>
+        
+        <div class="form">
+            <label>Book Title</label>
+            <input type="text" class="tap" placeholder="Book you're reviewing">
+        </div>
+        
+        <div class="form">
+            <label>Your Rating</label>
+            <div class="rating-select">
+                <i class="fas fa-star rating-star" data-value="1"></i>
+                <i class="fas fa-star rating-star" data-value="2"></i>
+                <i class="fas fa-star rating-star" data-value="3"></i>
+                <i class="fas fa-star rating-star" data-value="4"></i>
+                <i class="fas fa-star rating-star" data-value="5"></i>
+            </div>
+        </div>
+        
+        <div class="form">
+            <label for="text">Your Review</label>
+            <textarea id="text" class="tap" rows="6" placeholder="Share your reading experience..."></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">Submit Review</button>
+    </form>
+</div>
+</section>
+
+<section class="toptext">
+    <h1>Our Story</h1>
+    <p>Discover the journey behind READ.net and our passion for connecting readers with great books</p>
+  </section>
+
+  <div class="about-container">
+    <section class="section">
+      <h2 class="title">Who We Are</h2>
+      <div class="story-content">
+        <div class="story-text">
+          <h3>From a Small Bookstore to a Global Community</h3>
+          <p>Founded in 2017, READ.net began as a small independent bookstore with a simple mission: to help people discover books they'll love. What started as a single storefront has grown into a vibrant online community of over 500,000 readers worldwide.</p>
+          <p>Our journey began when our founder, Sarah Johnson, noticed how difficult it was for readers to find books that truly resonated with them. She envisioned a place where book lovers could not only find their next great read but also connect with fellow readers who shared their passions.</p>
+          <p>Today, we're proud to have built a platform that combines cutting-edge technology with human curation to deliver personalized book recommendations, foster meaningful literary discussions, and support authors at every stage of their careers.</p>
+        </div>
+        <div class="story-image">
+          <img src="hand.jpeg" alt="Bookstore interior">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="stats">
+        <div class="stat-card">
+          <i class="fas fa-book-open"></i>
+          <div class="number">250,000+</div>
+          <div class="label">Books in Catalog</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-users"></i>
+          <div class="number">500,000+</div>
+          <div class="label">Happy Readers</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-globe"></i>
+          <div class="number">120+</div>
+          <div class="label">Countries Served</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-star"></i>
+          <div class="number">4.9/5</div>
+          <div class="label">Customer Rating</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="title">Our Values</h2>
+      <div class="values">
+        <div class="value-card">
+          <i class="fas fa-book"></i>
+          <h3>Literary Passion</h3>
+          <p>We believe in the transformative power of books. Our team is composed of passionate readers who curate our collection with care and expertise.</p>
+        </div>
+        <div class="value-card">
+          <i class="fas fa-users"></i>
+          <h3>Community Focus</h3>
+          <p>Reading is better together. We foster a vibrant community where readers can connect, share, and grow through book clubs and discussions.</p>
+        </div>
+        <div class="value-card">
+          <i class="fas fa-lightbulb"></i>
+          <h3>Innovation</h3>
+          <p>We combine technology with human insight to create personalized experiences that help you discover your next favorite book.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="last">
+      <h2>Join Our Reading Community</h2>
+      <p>Discover your next favorite book and connect with fellow readers around the world</p>
+      <button class="last-btn">Get Started</button>
+    </section>
+  </div>
+      
+                      
+                  
+
+
+
+
+    <footer>
+        <p>© 2025 READ.net -  Book librarie</p>
+    </footer>
+
+    <script>
+ 
+
+
+ 
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.querySelector('.menubtn');
+    const menu = document.querySelector('.menu');
+    
+    menuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        menu.classList.toggle('open');
+    });
+    
+    document.addEventListener('click', function(event) {
+        const isClickInsideMenu = menu.contains(event.target);
+        const isClickOnMenuBtn = menuBtn.contains(event.target);
+        
+        if (!isClickInsideMenu && !isClickOnMenuBtn && menu.classList.contains('open')) {
+            menu.classList.remove('open');
+        }
+    });
+    
+    
+    const searchBtn = document.querySelector('.search-btn');
+    const searchInput = document.querySelector('.search-input');
+    
+    searchBtn.addEventListener('click', function() {
+        if (searchInput.value.trim() !== '') {
+            alert(`Searching for: ${searchInput.value}`);
+            
+        }
+    });
+    
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            if (searchInput.value.trim() !== '') {
+                alert(`Searching for: ${searchInput.value}`);
+            }
+        }
+    });
+});
+         
+            
+            
+      
+    </script>
+</body>
+</html>
+

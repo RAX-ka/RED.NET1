@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - READ.net</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --principal-color:rgb(64, 99, 255);
+            --second-color:white;
+            --third-color: rgb(255, 255, 255);
+            --four-color:black;
+             --five-color:rgb(40, 240, 240);
+            --bleur: rgba(128, 128, 128, 0.425);
+            --teal-accent: #00CED1; 
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --text-color: black;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            background-color: var(--second-color);
+            color: var(--four-color);
+            padding: 20px;
+            font-family: 'Raleway', sans-serif;
+            background-image: var(--second-color) ;
+            background-size: 40px 40px;
+        }
+        
+        header {
+            position: relative;
+            padding: 0 2rem;
+            margin-bottom: 0; 
+        }
+        
+        .navbar {
+            width: 100%;
+            height: 70px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color:var(--second-color);
+            padding: 0 20px;
+            border-radius: 15px;
+            position: relative;
+            z-index: 15px;
+        }
+        
+        .logo a {
+            font-size: 3rem;
+            font-weight: bolder;
+            color: var(--principal-color);
+            padding: 0;
+            font-family: 'rial';
+             font-weight: bold;
+        }
+        
+        .links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .links li {
+            list-style: none;
+        }
+        
+        .links a {
+            color: var(--four-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            font-weight: bold;
+        }
+        
+        .links a:hover {
+            color: var(--teal-accent);
+        }
+        a{
+           text-decoration: none;
+        }
+        .menu a:hover{
+            color: var(--four-color);
+        }
+        .login a :hover{
+            color: var(--four-color);
+        }
+        .links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--third-color);
+            transition: width 0.3s ease;
+        }
+        
+        .links a:hover::after {
+            width: 100%;
+        }
+        
+        .menubtn {
+            color: var(--four-color);
+            font-size: 2rem;
+            cursor: pointer;
+            display: none;
+            transition: transform 0.3s ease;
+            display:flex ;
+        }
+        
+        .menubtn:hover {
+            transform: scale(1.1);
+        }
+        
+        .login {
+            background-color: var(--principal-color);
+            color: var(--second-color);
+            padding: 12px 30px;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .login:hover {
+            transform: scale(1.05);
+            background-color: var(--teal-accent);
+            color: var(--four-color);
+        }
+        
+        .menu {
+            position: absolute;
+            right: 2rem;
+            top: 90px;
+            width: 400px;
+            max-height: 0;
+            background-color: var(--bleur);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
+            box-shadow: 0 10px 30px var(--second-color);
+        }
+        .menu a{
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .menu.open {
+            max-height: 600px;
+        }
+        
+        .menu ul {
+            padding: 20px 0;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        
+        .menu li {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: background 0.3s ease;
+        
+        }
+        
+        .menu li:hover {
+            background-color: var(--third-color);
+        }
+        
+        .menu li a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            color: var(--four-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .menu li i {
+            width: 24px;
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--principal-color);
+        }
+        
+        
+        .login2-container {
+            padding: 15px 20px 5px;
+            margin-top: 10px;
+            border-top: 1px solid var(--bleur);
+        }
+        
+        .login2 {
+            background-color: var(--principal-color);
+            color: var(--second-color);
+            padding: 15px;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            display: block;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .login2:hover {
+            background-color: var(--teal-accent);
+            color: var(--four-color);
+            transform: scale(1.02);
+        }
+          
+        .search {
+            position: fixed;
+            display:flex ;
+            bottom: 20px; 
+            left: 50%;
+            z-index: 10;
+            transform: translateX(-50%);
+            width: auto;
+            padding: 10px;
+            background:var(--four-color);
+            border-radius: 25px;
+            box-shadow: 0 4px 6px var(--second-color);
+        }
+        .search-input{
+            border: none;
+            outline: none;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 250px;
+            border-radius: 25px; 
+        }
+        
+        .search-btn {
+            background: var(--second-color);
+            border: none;
+            outline: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+
+        
+        .hero {
+            max-width: 1200px;
+            margin: 50px auto;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 15px;
+            background: var(--bleur);
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--principal-color);
+            font-family:rial;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: var(--bleur);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px var(--second-color);
+            backdrop-filter: blur(10px);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--second-color);
+        }
+        
+        .icon {
+            background: var(--four-color);
+            color: var(--second-color);
+            font-size: 2.5rem;
+            padding: 25px 0;
+            text-align: center;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--principal-color);
+            font-family: 'Roboto Slab', serif;
+        }
+        
+        .content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: var(--four-color);
+        }
+        
+        .features {
+            margin-top: 20px;
+        }
+        
+        .features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .features li i {
+            color: var(--principal-color);
+        }
+        
+       
+        
+        .ANQ {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 40px 20px;
+        }
+        
+        .ANQ h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--principal-color);
+        }
+        
+        .ANQ-item {
+            margin-bottom: 20px;
+            background: var(--service-card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .ANQ-question {
+            padding: 20px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .ANQ-question:hover {
+            background: var(--bleur);
+        }
+        
+        .ANQ-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .ANQ-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .ANQ-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .ANQ-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 20px 20px;
+        }
+        
+        
+        .cart {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 60px 40px;
+            text-align: center;
+            background: var(--bleur);
+            border-radius: 15px;
+            background-image: url('images/bleu books.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .cart h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--principal-color);
+        }
+        
+        .cart p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .cart-button {
+            background: var(--principal-color);
+            color: var(--second-color);
+            padding: 15px 50px;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .cart-button:hover {
+            transform: scale(1.05);
+            background: var(--teal-accent);
+            color: var(--four-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            color: var(--four-color);
+            font-size: 1.2rem;
+            border-top: 1px solid var(--bleur);
+        }
+        
+        @media (max-width: 992px) {
+            .links,
+            .login {
+                display: none;
+            }
+            
+            .menubtn {
+                display: block;
+            }
+            
+            .menu {
+                right: 2rem;
+                width: calc(100% - 4rem);
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 30px 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ANQ-question {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 0 15px;
+            }
+            
+            .logo a {
+                font-size: 1.7rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo"><a href="#">READ.net</a></div>
+            <ul class="links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="contactus2.html">CONTACT</a></li>
+                <li><a href="store.html">STORE</a></li>
+                <li><a href="services.html" class="active">SERVICES</a></li>
+            </ul>
+            <a href="loogin.html" class="login">LOGIN</a>
+            <div class="menubtn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="index.html"><i class="fa fa-home"></i> HOME</a></li>
+                <li><a href="myshop.html"><i class="fa fa-shopping-cart"></i> MY SHOP</a></li>
+                <li><a href="store.html"><i class="fa fa-store"></i> STORE</a></li>
+                <li><a href="service.html"><i class="fa fa-handshake"></i> SERVICE</a></li>
+                <li><a href="best.html"><i class="fa fa-star"></i> BEST SELLERS</a></li>
+                <li><a href="contactus2.html"><i class="fa fa-envelope"></i> CONTACT</a></li>
+                <li><a href="#"><i class="fa fa-heart"></i> LIKED</a></li>
+                <li><a href="side.html"><i class="fa fa-info-circle"></i> ABOUT US</a></li>
+                <li class="login2-container">
+                    <a href="loogin.html" class="login2">LOGIN</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+
+    
+    
+    <section class="hero">
+        <h1>Our Premium Services</h1>
+        <p>At READ.net, we offer more than just books. We provide a complete reading ecosystem designed to enhance your literary journey and connect you with fellow book lovers.</p>
+        <div class="search">
+            <input type="text" placeholder="Find a service..." class="search-input">
+            <button class="search-btn"><i class="fas fa-search" style="color: var(--four-color);"></i></button>
+        </div>
+    </section>
+    
+    <section class="container">
+        <div class="grid">
+            
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="content">
+                    <h3>Personalized Book Recommendations</h3>
+                    <p>Our AI-powered recommendation engine analyzes your reading preferences to suggest books you'll love. Never struggle to find your next great read again.</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> Tailored to your unique tastes</li>
+                        <li><i class="fas fa-check-circle"></i> Updated weekly with new releases</li>
+                        <li><i class="fas fa-check-circle"></i> Expert-curated lists for every mood</li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-headphones"></i>
+                </div>
+                <div class="content">
+                    <h3>Audiobook Streaming</h3>
+                    <p>Access our vast library of professionally narrated audiobooks. Listen anywhere, anytime with our premium streaming service.</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> Unlimited streaming</li>
+                        <li><i class="fas fa-check-circle"></i> Download for offline listening</li>
+                        <li><i class="fas fa-check-circle"></i> Celebrity-narrated exclusives</li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="content">
+                    <h3>Book Clubs & Community</h3>
+                    <p>Join our vibrant community of readers. Participate in discussions, author Q&As, and themed reading challenges.</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> 50+ specialized book clubs</li>
+                        <li><i class="fas fa-check-circle"></i> Live author events</li>
+                        <li><i class="fas fa-check-circle"></i> Monthly reading challenges</li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <div class="content">
+                    <h3>Premium Delivery Service</h3>
+                    <p>Get your books faster with our priority delivery options. Free shipping on all orders over $25.</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> Same-day delivery in select cities</li>
+                        <li><i class="fas fa-check-circle"></i> Eco-friendly packaging</li>
+                        <li><i class="fas fa-check-circle"></i> Real-time tracking</li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="content">
+                    <h3>Learning Resources</h3>
+                    <p>Expand your knowledge with our educational resources, study guides, and expert-led workshops.</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> Study guides for popular titles</li>
+                        <li><i class="fas fa-check-circle"></i> Writing workshops</li>
+                        <li><i class="fas fa-check-circle"></i> Literary analysis tools</li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="content">
+                    <h3>Book Exchange Program</h3>
+                    <p>Trade books you've finished for new ones. Our innovative exchange program keeps your library fresh and sustainable.</p>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> Credit system for traded books</li>
+                        <li><i class="fas fa-check-circle"></i> Nationwide network of readers</li>
+                        <li><i class="fas fa-check-circle"></i> Eco-friendly reading solution</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+   
+     
+    
+    
+    <section class="ANQ">
+        <h2>Frequently Asked Questions</h2>
+        
+        <div class="ANQ-item">
+            <div class="ANQ-question">
+                How does the personalized recommendation service work?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="ANQ-answer">
+                <p>Our AI analyzes your reading history, ratings, and preferences to identify patterns. We combine this with human curation from our literary experts to deliver recommendations that match your unique tastes. The more you use our platform, the better our suggestions become.</p>
+            </div>
+        </div>
+        
+        <div class="ANQ-item">
+            <div class="ANQ-question">
+                Can I access audiobooks on multiple devices?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="ANQ-answer">
+                <p>Yes! Our audiobook service allows you to listen on up to 5 devices simultaneously. Your progress syncs across all devices, so you can switch from your phone to your tablet to your computer seamlessly.</p>
+            </div>
+        </div>
+        
+        <div class="ANQ-item">
+            <div class="ANQ-question">
+                How does the book exchange program work?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="ANQ-answer">
+                <p>Simply list books you're willing to trade on our platform. When another member requests one of your books, you'll receive shipping instructions. For each book you send, you earn credits to request books from other members. We handle the logistics to make swapping books easy and efficient.</p>
+            </div>
+        </div>
+        
+        <div class="ANQ-item">
+            <div class="ANQ-question">
+                Are there any additional costs for joining book clubs?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="ANQ-answer">
+                <p>All book clubs are free for READ.net members. Some clubs may choose books that require purchase, but we always offer library and used book options. Premium subscribers get 15% off all book club selections.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cart">
+        <h2>Ready to Transform Your Reading Experience?</h2>
+        <p>Join over 500,000 readers who are already enjoying our premium services.</p>
+        <button class="cart-button">GET STARTED TODAY</button>
+    </section>
+    
+    <footer>
+        <p>© 2025 READ.net - Book Library </p>
+    </footer>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.querySelector('.menubtn');
+            const menu = document.querySelector('.menu');
+            
+            menuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                menu.classList.toggle('open');
+            });
+            
+            document.addEventListener('click', function(event) {
+                const isClickInsideMenu = menu.contains(event.target);
+                const isClickOnMenuBtn = menuBtn.contains(event.target);
+                
+                if (!isClickInsideMenu && !isClickOnMenuBtn && menu.classList.contains('open')) {
+                    menu.classList.remove('open');
+                }
+            });
+            
+            // FAQ accordion functionality
+            const ANQQuestions = document.querySelectorAll('.ANQ-question');
+            ANQQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentNode;
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Search functionality
+            const searchBtn = document.querySelector('.search-btn');
+            const searchInput = document.querySelector('.search-input');
+            
+            searchBtn.addEventListener('click', function() {
+                if (searchInput.value.trim() !== '') {
+                    alert(`Searching for services related to: ${searchInput.value}`);
+                }
+            });
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    if (searchInput.value.trim() !== '') {
+                        alert(`Searching for services related to: ${searchInput.value}`);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
